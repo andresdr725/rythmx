@@ -1,0 +1,33 @@
+<nav class="h-full flex flex-col transition-all duration-300 bg-primary" [class.w-64]="expanded()"
+    [class.w-20]="!expanded()">
+    <div class="p-5 font-bold text-foreground text-lg flex justify-between items-center">
+        @if (expanded()){
+        <span>Rythmx</span>
+        }
+        <button (click)="toggle()" class="text-sm cursor-pointer">
+            @if(expanded()){
+            <img src="/svgs/expand-left.svg" alt="expand-left">
+            } @else {
+            <img src="/svgs/expand-right.svg" alt="expand-right">
+            }
+        </button>
+    </div>
+    <div class="flex-1 flex flex-col gap-1 px-2">
+        @for (item of items; track $index){
+        <li>
+            <a [routerLink]="item.path" routerLinkActive="active-link bg-secondary/20 font-semibold"
+                [routerLinkActiveOptions]="{exact: true}" #rla="routerLinkActive"
+                class="group flex items-center gap-3 px-3 py-2 rounded-xxl hover:bg-secondary/25 cursor-pointer">
+                <div class="relative w-5 h-5 flex items-center justify-center">
+                    <img [src]="rla.isActive ? item.icon_selected : item.icon" [alt]="item.alt" class="w-5 h-5" />
+                </div>
+                @if (expanded()) {
+                <p class="text-foreground group-[.active-link]:text-secondary">
+                    {{ item.label }}
+                </p>
+                }
+            </a>
+        </li>
+        }
+    </div>
+</nav>

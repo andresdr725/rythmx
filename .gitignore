@@ -10,6 +10,7 @@
 /node_modules
 npm-debug.log
 yarn-error.log
+pnpm-lock.yaml
 
 # IDEs and editors
 .idea/
@@ -41,3 +42,4 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+

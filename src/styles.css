@@ -1,3 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
-
 @import "tailwindcss";
+
+@theme {
+
+    /* Colores */
+    --color-primary: var(--primary);
+    --color-secondary: var(--secondary);
+    --color-foreground: var(--foreground);
+
+    /* Radios */
+    --radius-xxl: 0.875rem;
+    
+}
+
+@layer base {
+    :root {
+        --primary: #0e0e0e;
+        --secondary: #00bfff;
+        --background: #121212;
+        --foreground: #ffffff;
+
+        background-color: var(--background);
+    }
+
+    @font-face {
+        font-family: 'space-grotesk';
+        src: url('/fonts/SpaceGrotesk.ttf') format('truetype');
+        font-weight: 100 900;
+        font-display: swap;
+    }
+
+    body {
+        font-family: 'space-grotesk', sans-serif;
+        color: var(--foreground);
+    }
+}
