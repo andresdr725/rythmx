@@ -7,13 +7,13 @@ export const dashboardRoutes: Routes = [
             return import('@dashboard/layout')
         },
         children: [
+            // {
+            //     path: '',
+            //     redirectTo: '',
+            //     pathMatch: 'full',
+            // },
             {
                 path: '',
-                redirectTo: 'home',
-                pathMatch: 'full',
-            },
-            {
-                path: 'home',
                 loadComponent() {
                     return import('@dashboard/modules/home/template')
                 }

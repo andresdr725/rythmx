@@ -2,35 +2,75 @@
 
 @theme {
 
-    /* Colores */
-    --color-primary: var(--primary);
-    --color-secondary: var(--secondary);
-    --color-foreground: var(--foreground);
+  /* Colores */
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-foreground: var(--foreground);
 
-    /* Radios */
-    --radius-xxl: 0.875rem;
-    
+  /* Radios */
+  --radius-xxl: 0.875rem;
+
 }
 
 @layer base {
-    :root {
-        --primary: #0e0e0e;
-        --secondary: #00bfff;
-        --background: #121212;
-        --foreground: #ffffff;
+  :root {
+    --primary: #0e0e0e;
+    --secondary: #00bfff;
+    --background: #121212;
+    --foreground: #ffffff;
 
-        background-color: var(--background);
-    }
+    background-color: var(--background);
+  }
 
-    @font-face {
-        font-family: 'space-grotesk';
-        src: url('/fonts/SpaceGrotesk.ttf') format('truetype');
-        font-weight: 100 900;
-        font-display: swap;
-    }
+  @font-face {
+    font-family: 'space-grotesk';
+    src: url('/fonts/SpaceGrotesk.ttf') format('truetype');
+    font-weight: 100 900;
+    font-display: swap;
+  }
 
-    body {
-        font-family: 'space-grotesk', sans-serif;
-        color: var(--foreground);
-    }
+  body {
+    font-family: 'space-grotesk', sans-serif;
+    color: var(--foreground);
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+    height: 0;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+* {
+  --sb-track-color: #262727;
+  --sb-thumb-color: #000000;
+  --sb-size: 0px;
+}
+
+*::-webkit-scrollbar {
+  width: var(--sb-size);
+  height: var(--sb-size);
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 0px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 0px;
+
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
 }
