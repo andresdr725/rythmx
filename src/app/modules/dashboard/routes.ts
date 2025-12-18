@@ -29,6 +29,12 @@ export const dashboardRoutes: Routes = [
                 loadComponent() {
                     return import('@dashboard/modules/playlist/template')
                 }
+            },
+            {
+                path: 'artist/:id',
+                loadComponent() {
+                    return import('@dashboard/modules/artist/template')
+                }
             }
         ]
     },

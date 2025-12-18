@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { SwiperOptions } from "swiper/types";
 import { BEST_SONGS_MOMENTS, MY_SONGS, POPULAR_PLAYLIST } from "@dashboard/common/dummys";
 import Card from "../components/card/card";
 
@@ -14,4 +15,10 @@ export default class HomePage {
     songs = MY_SONGS;
     bestSongsMoments = BEST_SONGS_MOMENTS;
     popularPlaylist = POPULAR_PLAYLIST;
+
+    swiperConfig: SwiperOptions = {
+        slidesPerView: 'auto',
+        spaceBetween: 8,
+        grabCursor: true
+    };
 }

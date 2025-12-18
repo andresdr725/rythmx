@@ -55,14 +55,14 @@
     </section>
     <section class="py-5">
         <p class="text-xl font-medium">Continuar escuchando</p>
-        <card [data]="songs" />
+        <card [data]="songs" [config]="swiperConfig" />
     </section>
     <section>
         <p class="text-xl font-medium">Las mejores del momento</p>
-        <card [data]="bestSongsMoments" />
+        <card [data]="bestSongsMoments" [config]="swiperConfig" />
     </section>
     <section>
         <p class="text-xl font-medium">Playlist populares</p>
-        <card [data]="popularPlaylist" />
+        <card [data]="popularPlaylist" [config]="swiperConfig" />
     </section>
 </section>
