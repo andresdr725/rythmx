@@ -1,10 +1,11 @@
-@if (loading) {
+@if (loading$ | async) {
 <artist-loader />
 } @else {
+@if (artist$ | async; as artist) {
 <section class="w-full h-full flex flex-col gap-5 overflow-y-auto no-scrollbar select-none">
     <section>
         <div class="w-full h-[480px] relative overflow-hidden group shadow-lg rounded-xl bg-black">
-            <img src="{{artist?.songs?.[0]?.thumbnail}}" alt="artist-bg-cover" class="w-full h-full object-cover">
+            <img src="{{artist.songs?.[0]?.thumbnail}}" alt="artist-bg-cover" class="w-full h-full object-cover">
 
             <div class="absolute inset-0 bg-linear-to-r from-black to-transparent pointer-events-none z-10"></div>
 
@@ -27,17 +28,17 @@
                 <div class="flex flex-row gap-8 items-end w-full">
                     <div
                         class="relative w-56 h-56 shrink-0 rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.5)] overflow-hidden group/img">
-                        <img [src]="artist?.thumbnail" alt="artist-cover" class="w-full h-full object-cover " />
+                        <img [src]="artist.thumbnail" alt="artist-cover" class="w-full h-full object-cover " />
                         <div class="absolute inset-0 bg-black/30"></div>
                     </div>
 
                     <div class="flex flex-col gap-2 mb-2 w-full">
                         <h1 class="text-8xl font-black tracking-tighter drop-shadow-xl leading-none -ml-1">
-                            {{ artist?.name }}
+                            {{ artist.name }}
                         </h1>
 
                         <p class="text-lg text-gray-200 mt-2 font-medium drop-shadow-md">
-                            {{ artist?.subscribers }} Suscriptores
+                            {{ artist.subscribers }} Suscriptores
                         </p>
 
                         <div class="flex items-center gap-4 mt-4">
@@ -68,4 +69,5 @@
         </div>
     </section>
 </section>
+}
 }
