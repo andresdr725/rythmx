@@ -1,10 +1,12 @@
 import { Component, inject } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { ApiGetArtist } from "../api/get-artist";
+import { ApiGetArtist, TGetArtist } from "../api/get-artist";
+import { ArtistLoaderComponent } from "../components/loader/loader.component";
 
 @Component({
     selector: 'artist-page',
     standalone: true,
+    imports: [ArtistLoaderComponent],
     templateUrl: 'index.html',
     providers: [ApiGetArtist]
 })
@@ -12,15 +14,33 @@ import { ApiGetArtist } from "../api/get-artist";
 export default class ArtistPage {
     private readonly _apiGetArtist = inject(ApiGetArtist);
     private readonly route = inject(ActivatedRoute);
-    artist_id = this.route.snapshot.paramMap.get('id');
 
-    // constructor() {
-    //     console.log("ID recibido:", this.artist_id);
-    // }
+    artist_id: string | null = null;
+    artist: TGetArtist | null = null;
+    loading: boolean = true;
+
+    ngOnInit() {
+        this.route.queryParams.subscribe(params => {
+            this.artist_id = params['id'];
+            console.log("ID recibido:", this.artist_id);
+            this._getArtist();
+        });
+    }
 
     protected _getArtist() {
-        this._apiGetArtist.getArtist(this.artist_id).then((data) => {
-            console.log(data);
-        });
+        this.loading = true;
+        this._apiGetArtist.getArtist(this.artist_id)
+            .then((data) => {
+                if (data.songs && data.songs.length > 0) {
+                    console.log("SONG THUMBNAIL -> ", data.songs[0].thumbnail);
+                }
+                this.artist = data;
+            })
+            .catch((error) => {
+                console.error("Error fetching artist:", error);
+            })
+            .finally(() => {
+                this.loading = false;
+            });
     }
 }

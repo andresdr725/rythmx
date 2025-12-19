@@ -31,7 +31,7 @@ export const dashboardRoutes: Routes = [
                 }
             },
             {
-                path: 'artist/:id',
+                path: 'artist',
                 loadComponent() {
                     return import('@dashboard/modules/artist/template')
                 }
